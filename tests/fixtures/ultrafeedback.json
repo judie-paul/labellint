@@ -1,0 +1,20 @@
+[
+  {
+    "instruction": "Explain unit testing.",
+    "completions": [
+      {
+        "response": "A unit test checks a single behavior in isolation.",
+        "annotations": {
+          "helpfulness": {"Rating": "5", "Rationale": "Clear and accurate."},
+          "honesty": {"Rating": "4", "Rationale": "Correct explanation."}
+        }
+      },
+      {
+        "response": "It is an unrelated concept.",
+        "annotations": {
+          "helpfulness": {"Rating": "1", "Rationale": "Incorrect and irrelevant."}
+        }
+      }
+    ]
+  }
+]
