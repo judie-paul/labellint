@@ -4,6 +4,10 @@ All notable changes will be documented here using Keep a Changelog conventions.
 
 ## [Unreleased]
 
+### Documentation
+
+- Update README with v1 release links, shipped capabilities, verification and review quickstart.
+
 ## [1.0.0] - 2026-09-29
 
 ### Added

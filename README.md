@@ -10,6 +10,31 @@ The default data and annotators are **synthetic**, generated deterministically t
 exercise the workflow without dataset downloads, model weights or API keys.
 Results below are a software demonstration, not a real-world accuracy claim.
 
+## Release status
+
+**v1.0.0 is released.** The CLI, audit pipeline, API, review dashboard and Docker
+deployment are implemented and verified.
+
+- [Download v1.0.0](https://github.com/judie-paul/labellint/releases/tag/v1.0.0): Python wheel and source archive.
+- [Release history](https://github.com/judie-paul/labellint/releases) and [changelog](CHANGELOG.md).
+- [CI results](https://github.com/judie-paul/labellint/actions/workflows/ci.yml): Python 3.11/3.12, browser tests and containers.
+
+Release verification: **51 Python tests passed with 97.08% coverage**, plus four
+desktop/mobile browser scenarios. Wheel and source distributions passed metadata
+checks. The pipeline also ran in a container with networking disabled.
+
+## What's included
+
+| Component | Available in v1 |
+|---|---|
+| Data | Deterministic synthetic data, CSV/JSONL ingestion, optional UltraFeedback loader |
+| Simulation | Five annotator profiles, multi-rater overlap and corruption labels |
+| Detection | Duplicate rationales, rating contradictions, speed and agreement anomalies |
+| Review | Record evidence, annotator risk, search, filters, pagination and JSON export |
+| Evaluation | Precision, recall, F1, false positives and threshold sweeps |
+| Reports | JSON, Markdown and optional mock-first reviewer notes |
+| Delivery | Typer CLI, FastAPI, React dashboard, Docker and Compose |
+
 ## Quickstart
 
 With Docker and Compose:
@@ -21,8 +46,19 @@ make docker-up
 ```
 
 Open **http://localhost:8080** and select **Run sample**, or upload a canonical CSV
-or JSONL file. If that port is occupied, use `DASHBOARD_PORT=8081 make docker-up`.
+or JSONL file. If that port is occupied, use an available port, for example:
+
+```sh
+DASHBOARD_PORT=8088 make docker-up
+```
+
+Then open **http://localhost:8088**.
 API documentation is at http://localhost:8000/docs. `API_PORT` can also be overridden.
+
+In the dashboard, select **Run sample**, inspect a flagged record, and open the
+**Annotators** and **Evaluation** views. To review your own data, use **Upload data**
+with a canonical CSV or JSONL file. Download the audit before stopping the service
+to retain its results. Stop the containers with `docker compose down`.
 
 For local Python development, install Python 3.12 and uv:
 
