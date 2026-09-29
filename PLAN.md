@@ -2,10 +2,9 @@
 
 ## Scope and working agreement
 
-Build the product described in the supplied LabelLint brief incrementally. The
-brief is a requirements reference. The owner has authorized creating the public
-judie-paul/labellint repository and using branches, issues and pull requests.
-Package publication and final release tagging remain gated on release readiness.
+Build an offline-first annotation quality auditing pipeline and local review app.
+Track milestones through issues and pull requests in judie-paul/labellint.
+Package publication and release tagging are gated on release readiness.
 Use focused changes, real measurements, mocked external integrations and reproducible runs.
 
 ## Milestone 1: foundation
@@ -75,7 +74,7 @@ Use focused changes, real measurements, mocked external integrations and reprodu
 
 ## Constraints and decisions
 
-- Git metadata writes and network operations require elevated workspace access.
+- Keep main protected and preserve shared commit history.
 - Keep dependencies incremental; add the specified frameworks when their stages arrive.
 - Missing external services must not block local work. CI configuration is not evidence
   that CI has run; report local and remote validation separately.

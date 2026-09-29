@@ -5,7 +5,7 @@ Use small branches named `feat/`, `fix/`, `docs/`, `test/`, `ci/` or `chore/`
 and Conventional Commits such as `feat(schema): validate annotation ratings`.
 Keep main releasable; do not force-push or rewrite shared history.
 
-Once a GitHub repository is configured, track each unit of work with an issue,
+Track each substantial unit of work with an issue,
 include acceptance criteria, and reference it in a pull request. Review the diff
 and require passing checks before merging. Update CHANGELOG.md and PROGRESS.md.
 Publication and release activity must follow the repository owner's chosen workflow.
