@@ -2,14 +2,15 @@
 
 ## Current phase
 
-Core pipeline implemented; preparing consolidated PR for issue #7.
+Application milestone: API, dashboard and deployment, issue #9.
 
 ## Completed PRs
 
 - #2: repository standards and roadmap (merged; closes #1).
 - #4: Python foundation and CI (merged; closes #3). Both Python matrix jobs passed.
 - #6: local ingestion (merged; closes #5), all Python checks passed.
-- Current branch: feat/audit-pipeline, tracking issue #7.
+- #8: core pipeline (merged; closes #7), Python 3.11/3.12 CI passed.
+- Current branch: feat/review-application, tracking issue #9.
 
 ## Implemented
 
@@ -38,7 +39,7 @@ Core pipeline implemented; preparing consolidated PR for issue #7.
 
 ## Next work
 
-Merge pipeline after CI, then implement the API and dashboard, containers and release verification.
+Finish application/container verification, then publish measured results and v1 release validation.
 
 ## Constraints
 
@@ -48,4 +49,7 @@ Merge pipeline after CI, then implement the API and dashboard, containers and re
 - Force pushes and deletion of main are blocked, including for administrators.
 - No release tags or packages have been published.
 - Python 3.12 is available via uv; default system Python is 3.14.
-- API, dashboard and container/release verification remain outstanding.
+- API and dashboard implemented; four desktop/mobile Playwright scenarios pass locally.
+- Application: 49 Python tests pass with 96.11% coverage; lint, typing and frontend build pass.
+- API tests need normal thread/event-loop access; sandboxed TestClient stalls, unrestricted passes.
+- Container verification and final release documentation remain outstanding.

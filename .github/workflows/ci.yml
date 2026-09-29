@@ -21,3 +21,39 @@ jobs:
       - run: make PYTHON=python lint typecheck test ingest
       - run: python -m build
       - run: python -m twine check dist/*
+  dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - run: python -m venv .venv
+      - run: .venv/bin/pip install -e '.[dev]'
+      - run: npm --prefix dashboard ci
+      - run: npm --prefix dashboard run format:check
+      - run: npm --prefix dashboard run build
+      - run: npx playwright install --with-deps chromium
+        working-directory: dashboard
+      - run: npm --prefix dashboard test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-results
+          path: dashboard/test-results/
+  containers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose build
+      - run: docker compose up -d --wait
+      - run: curl --fail --retry 5 --retry-delay 2 http://localhost:8080/api/health
+      - run: docker compose down
+        if: always()

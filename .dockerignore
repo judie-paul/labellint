@@ -1,0 +1,12 @@
+.git
+.venv
+**/node_modules
+**/dist
+**/__pycache__
+.env
+data
+reports
+.coverage
+.*_cache
+dashboard/test-results
+dashboard/playwright-report
