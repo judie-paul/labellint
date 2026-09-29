@@ -2,7 +2,12 @@
 
 ## Current phase
 
-Milestone 1: publishing repository standards and the tested Python foundation through PRs.
+Milestone 1: validating and publishing the Python foundation through PRs.
+
+## Completed PRs
+
+- #2: repository standards and roadmap (merged; closes #1).
+- Current branch: feat/python-foundation, tracking issue #3.
 
 ## Implemented
 
@@ -31,8 +36,8 @@ The source generator is intentionally small; expand templates before evaluating 
 ## Constraints
 
 - Repository created: https://github.com/judie-paul/labellint
-- Git initialized; bootstrap commit on main, standards on chore/repo-standards.
-- Foundation files are locally implemented; their PR follows the standards PR.
+- Git initialized and origin configured; standards merged through PR #2.
+- Foundation is on feat/python-foundation; remote CI verification is next.
 - No release tags or packages have been published.
 - Python 3.12 is available via uv; default system Python is 3.14.
 - Full pipeline, detectors, evaluation, API, dashboard and containers remain planned.
