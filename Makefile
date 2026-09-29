@@ -1,6 +1,6 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: setup lint format typecheck test test-slow ingest simulate detect evaluate pipeline api dashboard docker-build docker-up clean
+.PHONY: setup lint format typecheck test test-slow ingest simulate detect evaluate pipeline results api dashboard docker-build docker-up clean
 setup:
 	uv --cache-dir /tmp/labellint-uv-cache venv --python 3.12 .venv
 	uv --cache-dir /tmp/labellint-uv-cache pip install --python $(PYTHON) -e '.[dev]'
@@ -26,9 +26,12 @@ evaluate: detect
 	$(PYTHON) -m labellint.cli evaluate data/sim.jsonl reports/scan.json --out reports/eval.json
 pipeline:
 	$(PYTHON) -m labellint.cli run --config configs/default.yaml
+results:
+	$(PYTHON) scripts/results.py
 api:
 	$(PYTHON) -m uvicorn labellint.api:app --host 127.0.0.1 --port 8000
 dashboard:
+	npm --prefix dashboard ci
 	npm --prefix dashboard run dev -- --host 127.0.0.1
 docker-build:
 	docker compose build

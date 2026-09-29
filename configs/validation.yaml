@@ -1,0 +1,12 @@
+seed: 2026
+items: 200
+annotators: 50
+raters_per_item: 3
+provider: mock
+duplicate_backend: tfidf
+contradiction_backend: lexicon
+duplicate_threshold: 0.92
+speed_z: 2.0
+agreement_gap: 2.0
+risk_threshold: 0.5
+output_dir: reports/validation

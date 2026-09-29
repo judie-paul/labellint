@@ -4,6 +4,19 @@ All notable changes will be documented here using Keep a Changelog conventions.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-09-29
+
+### Added
+
+- Reproducible default/validation-seed result tables, architecture and deployment docs.
+- Complete local review workflow with verified Python, browser and container checks.
+- Distribution and offline-runtime verification for the v1 release.
+
+### Changed
+
+- Compose host ports can be overridden without editing service definitions.
+- Development dashboard target installs its dependencies before starting.
+
 ## [0.1.0] - 2026-09-29
 
 ### Added
