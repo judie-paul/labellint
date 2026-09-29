@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
+import yaml
+
 from labellint.cli import app
 from labellint.config import Settings
 from labellint.pipeline import run
@@ -9,10 +11,10 @@ from labellint.pipeline import run
 
 def main() -> None:
     """Write default and independent-seed results without estimating any numbers."""
-    reports = [(42, run(Settings(items=200, seed=42, output_dir=Path("reports"))))]
-    reports.append(
-        (2026, run(Settings(items=200, seed=2026, output_dir=Path("reports/validation"))))
-    )
+    reports = []
+    for config in ("configs/default.yaml", "configs/validation.yaml"):
+        settings = Settings(**yaml.safe_load(Path(config).read_text(encoding="utf-8")))
+        reports.append((settings, run(settings)))
     lines = [
         "# Reproducible synthetic results",
         "",
@@ -33,8 +35,8 @@ def main() -> None:
         "```",
         "",
     ]
-    for seed, report in reports:
-        out = "reports" if seed == 42 else "reports/validation"
+    for settings, report in reports:
+        seed, out = settings.seed, settings.output_dir
         # Exercise the same public evaluate command documented above.
         app(
             ["evaluate", f"{out}/sim.jsonl", f"{out}/scan.json", "--out", f"{out}/eval.json"],
