@@ -21,6 +21,16 @@ _RATIONALES = (
     "Clear and relevant explanation with accurate core details.",
     "Excellent, accurate and helpful explanation that directly answers the question.",
 )
+_COMMENTS = (
+    "The explanation should connect the cause to the outcome.",
+    "A concrete example would help a beginner apply the idea.",
+    "The terminology needs to match the question's scope.",
+    "The response should distinguish the process from its purpose.",
+    "The answer needs enough context to stand on its own.",
+    "A reader should be able to identify the main mechanism.",
+    "Consider whether the stated details support the conclusion.",
+    "The level of detail should fit an introductory explanation.",
+)
 
 
 def generate(count: int = 100, seed: int = 42) -> list[AnnotationRecord]:
@@ -43,7 +53,10 @@ def generate(count: int = 100, seed: int = 42) -> list[AnnotationRecord]:
                 aspect="helpfulness",
                 annotator_id="source",
                 rating=rating,
-                rationale=f"For {topic}: {_RATIONALES[rating - 1]}",
+                rationale=(
+                    f"For {topic}: {_RATIONALES[rating - 1]} "
+                    f"{_COMMENTS[int(rng.integers(len(_COMMENTS)))]}"
+                ),
                 time_spent_sec=round(float(rng.lognormal(3.8, 0.35)), 3),
             )
         )

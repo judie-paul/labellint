@@ -2,13 +2,14 @@
 
 ## Current phase
 
-Milestone 2: local file ingestion, followed by annotator simulation.
+Core pipeline implemented; preparing consolidated PR for issue #7.
 
 ## Completed PRs
 
 - #2: repository standards and roadmap (merged; closes #1).
 - #4: Python foundation and CI (merged; closes #3). Both Python matrix jobs passed.
-- Current branch: feat/local-ingestion, tracking issue #5.
+- #6: local ingestion (merged; closes #5), all Python checks passed.
+- Current branch: feat/audit-pipeline, tracking issue #7.
 
 ## Implemented
 
@@ -31,12 +32,13 @@ Milestone 2: local file ingestion, followed by annotator simulation.
 - Python 3.11 and 3.12 CI passed tests, typing, lint and package checks for PR #4.
 - Isolated wheel/sdist builds and twine validation passed locally as well.
 - Ingestion verification: `make lint typecheck test` passes; 30 tests, 97.74% coverage.
-- Pre-commit execution is not yet verified.
+- Core pipeline: 46 tests pass; 96.01% coverage, strict typing and lint pass.
+- End-to-end synthetic run produces scan, evaluation and Markdown reports.
+- Optional dataset, embedding, NLI and SDK providers tested with fixtures/mocks only.
 
 ## Next work
 
-Finish the local ingestion PR, then add fixture-based optional HF mapping and simulation.
-The source generator is intentionally small; expand templates before evaluating detectors.
+Merge pipeline after CI, then implement the API and dashboard, containers and release verification.
 
 ## Constraints
 
@@ -46,4 +48,4 @@ The source generator is intentionally small; expand templates before evaluating 
 - Force pushes and deletion of main are blocked, including for administrators.
 - No release tags or packages have been published.
 - Python 3.12 is available via uv; default system Python is 3.14.
-- Full pipeline, detectors, evaluation, API, dashboard and containers remain planned.
+- API, dashboard and container/release verification remain outstanding.
