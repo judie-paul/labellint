@@ -25,3 +25,19 @@ cannot install uncached dependencies offline; offline distribution is a later mi
 
 See [PLAN.md](PLAN.md) for the full implementation sequence and [PROGRESS.md](PROGRESS.md)
 for the current state. The API, dashboard, detectors and full CLI are not implemented yet.
+
+## Local data
+
+Load canonical JSONL or CSV using the Python API:
+
+```python
+from pathlib import Path
+from labellint.ingest import load_local
+
+records = load_local(Path("data/raw.jsonl"))
+detector_inputs = [record.for_detection() for record in records]
+```
+
+CSV headers use the canonical schema names. The optional `ground_truth` column
+contains JSON or an empty cell. Invalid rows and duplicate record IDs are rejected
+with file and line context; row contents are excluded from error messages.
